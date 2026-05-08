@@ -1,0 +1,22 @@
+{
+    "name": "بكالوريوس إدارة المستشفيات | NIAS إب",
+    "short_name": "NIAS إب",
+    "description": "المعهد الوطني للعلوم الإدارية - فرع إب - بكالوريوس إدارة المستشفيات",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0d4a2e",
+    "theme_color": "#0d4a2e",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "assets/images/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
