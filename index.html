@@ -3259,7 +3259,7 @@ html, body {
                       <span class="lbl">سنة خبرة</span>
                     </div>
                     <div class="mini-stat">
-                      <span class="num green-text">50+</span>
+                      <span class="num green-text"2>2+</span>
                       <span class="lbl">مشروع صحي</span>
                     </div>
                     <div class="mini-stat">
@@ -3303,11 +3303,11 @@ html, body {
                       <span class="lbl">سنة خبرة</span>
                     </div>
                     <div class="mini-stat">
-                      <span class="num blue-text">30+</span>
+                      <span class="num blue-text"0>0+</span>
                       <span class="lbl">تدقيق جودة</span>
                     </div>
                     <div class="mini-stat">
-                      <span class="num blue-text">5</span>
+                      <span class="num blue-text">0</span>
                       <span class="lbl">شهادات اعتماد</span>
                     </div>
                   </div>
@@ -3628,7 +3628,7 @@ html, body {
             <span class="lbl">سنة خبرة</span>
           </div>
           <div class="mini-stat">
-            <span class="num purple-text">8+</span>
+            <span class="num purple-text"0>0+</span>
             <span class="lbl">دورة تدريبية</span>
           </div>
           <div class="mini-stat">
@@ -4113,11 +4113,11 @@ ________ البرنامج الأكاديمي.</p>
       <a href="#" class="share-btn twitter" target="_blank" rel="noopener"><i class="fab fa-twitter" aria-hidden="true"></i> تويتر</a>
     </div>
   </section>
-  <!-- Registration Section -->
-  <section id="register" class="section-main" aria-labelledby="register-title">
-    <div class="form-container reveal-scale">
-      <div class="form-badge">🎓 سجل اهتمامك الآن</div
-          <h2 id="register-title">كن من المتميزين</h2>
+<!-- Registration Section -->
+<section id="register" class="section-main" aria-labelledby="register-title">
+  <div class="form-container reveal-scale">
+    <div class="form-badge">🎓 سجل اهتمامك الآن</div>
+    <h2 id="register-title">كن من المتميزين</h2>
     <p>املأ النموذج أدناه أو سجل مباشرة عبر البوابة الإلكترونية</p>
     
     <!-- رابط البوابة الإلكترونية -->
@@ -4133,7 +4133,7 @@ ________ البرنامج الأكاديمي.</p>
       <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #e5e7eb; z-index: 0;"></div>
     </div>
 
-    <p style="text-align: center; color: #6b7280; margin-bottom: 20px; font-size: 0.9rem;">املأ النموذج أدناه وسنتواصل معك</p>
+    <p style="text-align: center; color: #6b7280; margin-bottom: 20px; font-size: 0.9rem;">املأ النموذج أدناه وسنتواصل معك عبر واتساب</p>
 
     <form class="contact-form" id="interestForm" novalidate autocomplete="on">
       <div class="form-group">
@@ -4160,7 +4160,7 @@ ________ البرنامج الأكاديمي.</p>
         </select>
       </div>
       <button type="submit" class="btn-submit">
-        <i class="fas fa-paper-plane" aria-hidden="true"></i> إرسال الطلب
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> إرسال الطلب عبر واتساب
       </button>
       <p class="form-security"><i class="fas fa-lock" aria-hidden="true"></i> بياناتك آمنة ومحمية</p>
     </form>
@@ -4640,7 +4640,6 @@ if ('serviceWorker' in navigator) {
   on(document, 'keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
   });
-
   /* ─── Registration Form ─── */
   const interestForm = $('#interestForm');
   const formSuccess = $('#formSuccess');
@@ -4667,10 +4666,22 @@ if ('serviceWorker' in navigator) {
       return;
     }
 
-    // 1️⃣ فتح البوابة الإلكترونية
-    window.open('https://oasyemen.net/nias/admission', '_blank');
-    
-    // 2️⃣ إرسال إلى البريد الإلكتروني
+    // إرسال رسالة واتساب إلى الرقم المطلوب
+    const waMessage = `🎓 *طلب ${registerType} - المعهد الوطني للعلوم الإدارية*
+
+👤 *الاسم:* ${name}
+📞 *الهاتف:* ${phone}
+📧 *البريد:* ${email || 'غير متوفر'}
+📚 *التخصص:* ${program}
+🔄 *نوع التسجيل:* ${registerType}
+
+📍 فرع إب`;
+
+    // ✅ رقم الواتساب الصحيح: 784498808
+    const waUrl = `https://wa.me/967784498808?text=${encodeURIComponent(waMessage)}`;
+    window.open(waUrl, '_blank');
+
+    // إرسال نسخة إلى البريد الإلكتروني
     const subject = 'طلب ' + registerType + ' - ' + name;
     const body = 'نوع التسجيل: ' + registerType + '%0A' +
                  'الاسم: ' + name + '%0A' +
@@ -4681,24 +4692,10 @@ if ('serviceWorker' in navigator) {
     
     setTimeout(() => {
       window.open('mailto:alshabibi1968@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + body, '_blank');
-    }, 500);
-
-    // 3️⃣ إرسال إلى واتساب
-    const waMessage = `🎓 *طلب ${registerType} - المعهد الوطني للعلوم الإدارية*
-
-👤 الاسم: ${name}
-📞 الهاتف: ${phone}
-📧 البريد: ${email || 'غير متوفر'}
-📚 التخصص: ${program}
-🔄 نوع التسجيل: ${registerType}
-
-📍 فرع إب`;
-
-    const waUrl = `https://wa.me/967777416883?text=${encodeURIComponent(waMessage)}`;
-    setTimeout(() => window.open(waUrl, '_blank'), 1000);
+    }, 800);
 
     interestForm.reset();
-    showToast('تم توجيهك إلى بوابة التسجيل الرسمية');
+    showToast('تم إرسال طلبك بنجاح وسنتواصل معك قريباً');
 
     if (formSuccess) {
       interestForm.style.display = 'none';
@@ -4709,6 +4706,7 @@ if ('serviceWorker' in navigator) {
       }, 5000);
     }
   });
+
   /* ─── AI Assistant ─── */
   const assistantToggle = $('#assistantToggle');
   const assistantBox = $('#assistantBox');
@@ -4732,7 +4730,7 @@ if ('serviceWorker' in navigator) {
         }
       }
       if (action === 'whatsapp') {
-        window.open('https://wa.me/967777416883', '_blank');
+        window.open('https://wa.me/967784498808', '_blank');
         assistantBox.classList.remove('show');
       }
     });
