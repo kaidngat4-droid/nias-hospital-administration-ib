@@ -2942,6 +2942,135 @@ html, body {
     max-width: 100vw;
     overflow-x: hidden;
 }
+  /* ═══════════════════════════════════════════════════════════ */
+/*  Exit Button Style                                          */
+/* ═══════════════════════════════════════════════════════════ */
+.side-nav-links li a.exit-link {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  margin: 10px 15px;
+  border-radius: 12px;
+  border-right: none;
+  transition: var(--transition);
+}
+.side-nav-links li a.exit-link:hover {
+  background: #dc3545;
+  color: #fff;
+  padding-right: 28px;
+}
+.side-nav-links li a.exit-link i {
+  color: #dc3545;
+}
+.side-nav-links li a.exit-link:hover i {
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/*  Exit Confirmation Modal                                    */
+/* ═══════════════════════════════════════════════════════════ */
+.exit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.exit-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.exit-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 35px 30px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+.exit-modal-overlay.active .exit-modal {
+  transform: scale(1);
+}
+.exit-modal-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  display: block;
+}
+.exit-modal h3 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 10px;
+}
+.exit-modal p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+.exit-modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.exit-btn-cancel {
+  padding: 12px 28px;
+  border-radius: 50px;
+  background: #f0f0f0;
+  color: #333;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.exit-btn-cancel:hover {
+  background: #e0e0e0;
+}
+.exit-btn-confirm {
+  padding: 12px 28px;
+  border-radius: 50px;
+  background: #dc3545;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.exit-btn-confirm:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+}
+
+/* Dark mode */
+body.dark-mode .exit-modal {
+  background: #0e2418;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.dark-mode .exit-modal h3 {
+  color: #f5f5f5;
+}
+body.dark-mode .exit-modal p {
+  color: #aaa;
+}
+body.dark-mode .exit-btn-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ccc;
+}
+body.dark-mode .exit-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
 </style>
 </head>
 
@@ -3041,6 +3170,8 @@ html, body {
     <li><a href="#career"><i class="fas fa-road"></i> المسار الوظيفي</a></li>
     <li><a href="#opportunities"><i class="fas fa-briefcase"></i> فرص العمل</a></li>
     <li><a href="#register" class="register-link"><i class="fas fa-pen"></i> سجل الآن</a></li>
+    <!-- ✅ زر الخروج النهائي -->
+    <li><a href="#" id="exitBtn" class="exit-link" onclick="exitWebsite(event)"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
   </ul>
   <div class="side-nav-footer">
     <p>المعهد الوطني للعلوم الإدارية</p>
@@ -3263,7 +3394,7 @@ html, body {
                       <span class="lbl">مشروع صحي</span>
                     </div>
                     <div class="mini-stat">
-                      <span class="num green-text">3</span>
+                      <span class="num green-text">0</span>
                       <span class="lbl">جوائز تميز</span>
                     </div>
                   </div>
@@ -4792,6 +4923,98 @@ if ('serviceWorker' in navigator) {
     setInterval(update, 1000);
   }
   initCountdown();
+  /* ─── Exit Website Functionality ─── */
+
+// إنشاء نافذة تأكيد الخروج
+const exitModalHTML = `
+  <div class="exit-modal-overlay" id="exitModalOverlay">
+    <div class="exit-modal">
+      <span class="exit-modal-icon">👋</span>
+      <h3>هل أنت متأكد من المغادرة؟</h3>
+      <p>شكراً لزيارتك المعهد الوطني للعلوم الإدارية - فرع إب. نتمنى أن نراك مجدداً!</p>
+      <div class="exit-modal-buttons">
+        <button type="button" class="exit-btn-cancel" id="exitCancelBtn">🔙 البقاء في الموقع</button>
+        <button type="button" class="exit-btn-confirm" id="exitConfirmBtn">👋 مغادرة الموقع</button>
+      </div>
+    </div>
+  </div>
+`;
+
+// إضافة النافذة للصفحة
+document.body.insertAdjacentHTML('beforeend', exitModalHTML);
+
+const exitModalOverlay = $('#exitModalOverlay');
+const exitCancelBtn = $('#exitCancelBtn');
+const exitConfirmBtn = $('#exitConfirmBtn');
+
+// دالة فتح نافذة التأكيد
+window.exitWebsite = function(e) {
+  if (e) e.preventDefault();
+  if (exitModalOverlay) {
+    exitModalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  // إغلاق القائمة الجانبية إذا كانت مفتوحة
+  if (typeof closeNav === 'function') closeNav();
+};
+
+// زر الإلغاء
+if (exitCancelBtn) {
+  on(exitCancelBtn, 'click', () => {
+    if (exitModalOverlay) {
+      exitModalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// زر التأكيد - الخروج النهائي
+if (exitConfirmBtn) {
+  on(exitConfirmBtn, 'click', () => {
+    // 1️⃣ إغلاق النافذة
+    if (exitModalOverlay) {
+      exitModalOverlay.classList.remove('active');
+    }
+    
+    // 2️⃣ عرض رسالة وداع
+    document.body.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #061a10, #0d4a2e); text-align: center; font-family: 'Cairo', sans-serif;">
+        <div style="color: #fff; padding: 40px;">
+          <div style="font-size: 5rem; margin-bottom: 20px;">👋</div>
+          <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 15px; color: #d4af37;">شكراً لزيارتك</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 10px; color: #f0d060;">المعهد الوطني للعلوم الإدارية</p>
+          <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 25px;">فرع محافظة إب - تأسس عام 1985</p>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5);">نتمنى أن نراك مجدداً 🌹</p>
+          <button onclick="window.close()" style="margin-top: 30px; padding: 14px 35px; background: #d4af37; color: #061a10; border: none; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: 'Cairo', sans-serif; transition: all 0.3s;">🔒 إغلاق الصفحة</button>
+          <p style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 15px;">يمكنك إغلاق المتصفح يدوياً أيضاً</p>
+        </div>
+      </div>
+    `;
+    
+    // 3️⃣ محاولة إغلاق المتصفح
+    setTimeout(() => {
+      window.close();
+    }, 500);
+  });
+}
+
+// إغلاق النافذة بالضغط خارجها
+if (exitModalOverlay) {
+  on(exitModalOverlay, 'click', (e) => {
+    if (e.target === exitModalOverlay) {
+      exitModalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// إغلاق النافذة بمفتاح Escape
+on(document, 'keydown', (e) => {
+  if (e.key === 'Escape' && exitModalOverlay && exitModalOverlay.classList.contains('active')) {
+    exitModalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
 
 })();
 </script>
