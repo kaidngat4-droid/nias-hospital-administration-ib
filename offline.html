@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d4a2e">
+<meta name="description" content="وضع عدم الاتصال - بروشور إدارة المستشفيات NIAS">
+<title>غير متصل | المعهد الوطني للعلوم الإدارية - فرع إب</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════ */
+/*  Offline Page - NIAS Hospital Management Brochure             */
+/* ═══════════════════════════════════════════════════════════ */
+:root {
+  --gold: #d4af37;
+  --gold-light: #f0d060;
+  --green: #0d4a2e;
+  --green-dark: #061a10;
+  --green-light: #1a6b40;
+  --white: #ffffff;
+  --text-light: rgba(255,255,255,0.7);
+  --text-muted: rgba(255,255,255,0.5);
+  --shadow: 0 20px 60px rgba(0,0,0,0.3);
+  --radius: 24px;
+  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  background: var(--green-dark);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* Glow effects */
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 0;
+  animation: float 20s ease-in-out infinite;
+}
+.glow-orb:nth-child(1) {
+  width: 300px; height: 300px;
+  background: var(--gold);
+  top: -100px; right: -100px;
+  animation-delay: 0s;
+}
+.glow-orb:nth-child(2) {
+  width: 250px; height: 250px;
+  background: var(--green-light);
+  bottom: -80px; left: -80px;
+  animation-delay: -5s;
+}
+.glow-orb:nth-child(3) {
+  width: 200px; height: 200px;
+  background: var(--gold);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* Main Container */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+/* NIAS Badge */
+.nias-badge {
+  width: 70px; height: 70px;
+  margin: 0 auto 30px;
+}
+.badge-ring {
+  width: 100%; height: 100%;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4px;
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.3); }
+  50% { box-shadow: 0 0 0 15px rgba(212,175,55,0); }
+}
+.badge-inner {
+  width: 100%; height: 100%;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.badge-nias {
+  font-size: 11px; font-weight: 900;
+  color: var(--gold); letter-spacing: 1px;
+  font-family: 'Cairo', sans-serif;
+}
+.badge-year {
+  font-size: 9px; color: var(--white);
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Offline Icon */
+.offline-icon {
+  font-size: 80px;
+  margin-bottom: 25px;
+  display: block;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Title */
+.title {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 15px;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Connection Status */
+.status-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  padding: 10px 24px;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  color: #ff6b7a;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  background: #dc3545;
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* CTA Button */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: var(--white);
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.8s;
+}
+.cta-btn:hover::before { left: 100%; }
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(13,74,46,0.4);
+}
+.cta-btn:active { transform: translateY(-1px); }
+
+/* Cached Content Card */
+.cached-card {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212,175,55,0.1);
+  border-radius: var(--radius);
+  padding: 35px 30px;
+  text-align: right;
+  position: relative;
+  overflow: hidden;
+}
+.cached-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--gold), var(--green));
+}
+
+.cached-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.cached-icon {
+  width: 45px; height: 45px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.cached-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+/* Offline Features List */
+.features-list {
+  list-style: none;
+  padding: 0;
+}
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: var(--transition);
+}
+.features-list li:last-child { border-bottom: none; }
+.features-list li:hover {
+  padding-right: 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  padding: 14px 12px;
+}
+.feature-icon {
+  width: 40px; height: 40px;
+  background: rgba(13,74,46,0.3);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.feature-text h4 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+.feature-text p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.feature-check {
+  margin-right: auto;
+  width: 24px; height: 24px;
+  background: rgba(212,175,55,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+/* Footer info */
+.footer-info {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.footer-info .phone {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--gold);
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Retry button */
+.retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid rgba(212,175,55,0.3);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 15px;
+}
+.retry-btn:hover {
+  background: rgba(212,175,55,0.1);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.retry-btn.spinning .retry-icon {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container { padding: 0 10px; }
+  .cached-card { padding: 25px 20px; }
+  .title { font-size: 1.6rem; }
+  .features-list li { gap: 10px; }
+  .feature-icon { width: 35px; height: 35px; font-size: 16px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background glow effects -->
+<div class="glow-orb"></div>
+<div class="glow-orb"></div>
+<div class="glow-orb"></div>
+
+<div class="container">
+
+  <!-- NIAS Badge -->
+  <div class="nias-badge">
+    <div class="badge-ring">
+      <div class="badge-inner">
+        <span class="badge-nias">NIAS</span>
+        <span class="badge-year">1963</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offline Icon -->
+  <span class="offline-icon">📡</span>
+
+  <!-- Title -->
+  <h1 class="title">أنت غير متصل بالإنترنت</h1>
+
+  <!-- Subtitle -->
+  <p class="subtitle">
+    يبدو أن الاتصال بالإنترنت منقطع حالياً. لا تقلق! يمكنك الاستمرار في تصفح المحتوى المتاح بدون إنترنت.
+  </p>
+
+  <!-- Status -->
+  <div class="status-box">
+    <span class="status-dot"></span>
+    <span>في انتظار استعادة الاتصال...</span>
+  </div>
+
+  <!-- CTA -->
+  <a href="/" class="cta-btn">
+    <span>🏠</span>
+    <span>العودة للصفحة الرئيسية</span>
+  </a>
+
+  <!-- Cached Content Card -->
+  <div class="cached-card">
+    <div class="cached-header">
+      <div class="cached-icon">✅</div>
+      <h3 class="cached-title">متاح بدون إنترنت</h3>
+    </div>
+
+    <ul class="features-list">
+      <li>
+        <div class="feature-icon">📄</div>
+        <div class="feature-text">
+          <h4>الصفحة الرئيسية</h4>
+          <p>جميع الأقسام والمعلومات الأساسية</p>
+        </div>
+        <div class="feature-check">✓</div>
+      </li>
+      <li>
+        <div class="feature-icon">📚</div>
+        <div class="feature-text">
+          <h4>البرامج والخطة الدراسية</h4>
+          <p>تفاصيل البكالوريوس والدبلوم</p>
+        </div>
+        <div class="feature-check">✓</div>
+      </li>
+      <li>
+        <div class="feature-icon">🎓</div>
+        <div class="feature-text">
+          <h4>قصص نجاح الخريجين</h4>
+          <p>إنجازات خريجي البرنامج</p>
+        </div>
+        <div class="feature-check">✓</div>
+      </li>
+      <li>
+        <div class="feature-icon">📞</div>
+        <div class="feature-text">
+          <h4>معلومات التواصل</h4>
+          <p>أرقام الهاتف والموقع والبريد</p>
+        </div>
+        <div class="feature-check">✓</div>
+      </li>
+      <li>
+        <div class="feature-icon">📝</div>
+        <div class="feature-text">
+          <h4>نموذج التسجيل</h4>
+          <p>يُحفظ محلياً ويُرسل عند استعادة الاتصال</p>
+        </div>
+        <div class="feature-check">✓</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer Info -->
+  <div class="footer-info">
+    <p>للاستفسارات العاجلة، يمكنك التواصل مباشرة:</p>
+    <p class="phone">+967 123 456 789</p>
+    <button class="retry-btn" onclick="checkConnection()">
+      <span class="retry-icon">🔄</span>
+      <span>إعادة المحاولة</span>
+    </button>
+  </div>
+
+</div>
+
+<script>
+// Check connection status
+function checkConnection() {
+  const btn = document.querySelector('.retry-btn');
+  btn.classList.add('spinning');
+
+  setTimeout(() => {
+    btn.classList.remove('spinning');
+    if (navigator.onLine) {
+      window.location.reload();
+    } else {
+      // Show brief notification
+      const status = document.querySelector('.status-box span:last-child');
+      const original = status.textContent;
+      status.textContent = 'لا يزال الاتصال غير متوفر...';
+      status.style.color = '#ff6b7a';
+      setTimeout(() => {
+        status.textContent = original;
+        status.style.color = '';
+      }, 2000);
+    }
+  }, 1500);
+}
+
+// Listen for online event
+window.addEventListener('online', () => {
+  const status = document.querySelector('.status-box');
+  status.innerHTML = '<span style="color:#28a745;font-weight:700;">✓</span> <span style="color:#28a745;">تم استعادة الاتصال! جاري التحميل...</span>';
+  status.style.background = 'rgba(40,167,69,0.1)';
+  status.style.borderColor = 'rgba(40,167,69,0.2)';
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 1500);
+});
+
+// Update status dot color based on connection
+window.addEventListener('offline', () => {
+  document.querySelector('.status-dot').style.background = '#dc3545';
+});
+
+// Register background sync for form data
+if ('serviceWorker' in navigator && 'SyncManager' in window) {
+  navigator.serviceWorker.ready.then(registration => {
+    // Register periodic sync for checking connection
+    registration.periodicSync?.register('check-connection', {
+      minInterval: 60000 // 1 minute
+    }).catch(err => console.log('Periodic sync not supported'));
+  });
+}
+</script>
+
+</body>
+</html>
