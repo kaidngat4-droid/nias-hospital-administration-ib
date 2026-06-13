@@ -3078,10 +3078,30 @@ body.dark-mode .exit-btn-cancel {
 body.dark-mode .exit-btn-cancel:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-  /* تعديل الترتيب فقط مع الاحتفاظ بتصميم Grid الأصلي وأحجام البطاقات */
-.program-hero-card:nth-child(1) { order: 2; }  /* بكالوريوس → وسط */
-.program-hero-card:nth-child(2) { order: 1; }  /* دبلوم → بداية */
-.program-hero-card:nth-child(3) { order: 3; }  /* ماجستير → نهاية */
+  /* ═══════════════════════════════════════════════════════════ */
+/*  ترتيب بطاقات البرامج: دبلوم → بكالوريوس → ماجستير        */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* 1. تأكد أن الحاوية الأب تستخدم Flexbox */
+.program-hero-grid,
+.program-cards-container,
+.programs-wrapper {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+/* 2. ترتيب البطاقات باستخدام order */
+.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس → وسط */
+.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم → بداية */
+.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير → نهاية */
+
+/* 3. الحفاظ على التنسيق والأحجام الأصلية — لا تغيير */
+.program-hero-card {
+  /* لا تعديل على العرض أو الحجم أو الهوامش */
+  flex: 1 1 300px;
+  max-width: 400px;
+}
 
 </style>
 </head>
