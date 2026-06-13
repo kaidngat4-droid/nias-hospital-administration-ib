@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - الصفحة غير موجودة | المعهد الوطني للعلوم الإدارية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --green-dark: #061a10;
+            --green: #0d4a2e;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #061a10 0%, #0d4a2e 50%, #0a1f14 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            direction: rtl;
+        }
+
+        /* خلفية متحركة */
+        .bg-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.08);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* الحاوية الرئيسية */
+        .container-404 {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        /* رقم 404 */
+        .error-number {
+            font-family: 'Cairo', sans-serif;
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--gold) 30%, #f0d060 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulseNumber 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes pulseNumber {
+            0%, 100% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(1.3);
+                transform: scale(1.03);
+            }
+        }
+
+        /* أيقونة */
+        .icon-404 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounceIcon 2s ease-in-out infinite;
+            display: block;
+        }
+
+        @keyframes bounceIcon {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* العنوان */
+        .title-404 {
+            font-family: 'Cairo', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .title-404 span {
+            color: var(--gold);
+        }
+
+        /* الوصف */
+        .desc-404 {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* أزرار */
+        .buttons-404 {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-404 {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-404::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .btn-404:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary-404 {
+            background: linear-gradient(135deg, var(--gold), #c8a415);
+            color: var(--green-dark);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary-404:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary-404 {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary-404:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        /* شريط التقدم */
+        .progress-404 {
+            width: 100%;
+            max-width: 400px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 40px auto 20px;
+            overflow: hidden;
+        }
+
+        .progress-404-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--gold));
+            border-radius: 3px;
+            animation: progressFill 3s ease-in-out infinite;
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 0%; }
+        }
+
+        /* نص مساعد */
+        .help-text {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        .help-text a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* دائرة زخرفية */
+        .decorative-circle {
+            position: fixed;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -150px;
+            right: -150px;
+            animation: rotate 30s linear infinite;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: -100px;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* استجابة */
+        @media (max-width: 480px) {
+            .buttons-404 {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-404 {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- دوائر زخرفية -->
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+
+    <!-- جسيمات -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- المحتوى -->
+    <div class="container-404">
+        
+        <!-- أيقونة -->
+        <div class="icon-404">🔍</div>
+        
+        <!-- رقم 404 -->
+        <div class="error-number">404</div>
+        
+        <!-- عنوان -->
+        <h1 class="title-404">
+            عذراً، <span>الصفحة غير موجودة</span>
+        </h1>
+        
+        <!-- وصف -->
+        <p class="desc-404">
+            يبدو أن الصفحة التي تبحث عنها قد تم نقلها أو حذفها أو أن الرابط غير صحيح.
+            لا تقلق، يمكنك العودة إلى الصفحة الرئيسية.
+        </p>
+        
+        <!-- أزرار -->
+        <div class="buttons-404">
+            <a href="/" class="btn-404 btn-primary-404">
+                <i class="fas fa-home"></i> العودة للرئيسية
+            </a>
+            <a href="javascript:history.back()" class="btn-404 btn-secondary-404">
+                <i class="fas fa-arrow-right"></i> الرجوع للخلف
+            </a>
+        </div>
+        
+        <!-- شريط تقدم -->
+        <div class="progress-404">
+            <div class="progress-404-fill"></div>
+        </div>
+        
+        <!-- نص مساعد -->
+        <p class="help-text">
+            أو تواصل معنا على <a href="https://wa.me/967784498808">واتساب</a>
+        </p>
+        
+    </div>
+
+    <script>
+        // إنشاء جسيمات متحركة
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 8 + 3;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // تحديث التاريخ في الفوتر سنوياً تلقائياً
+        const yearEl = document.getElementById('currentYear');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    </script>
+
+</body>
+</html>
