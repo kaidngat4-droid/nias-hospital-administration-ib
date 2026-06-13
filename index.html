@@ -3078,34 +3078,22 @@ body.dark-mode .exit-btn-cancel {
 body.dark-mode .exit-btn-cancel:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-  /* ═══════════════════════════════════════════════════════════ */
-/*  ترتيب بطاقات البرامج عمودياً: دبلوم → بكالوريوس → ماجستير */
-/* ═══════════════════════════════════════════════════════════ */
-
-/* 1. الحاوية الأب — عمودية */
-.program-hero-grid,
-.program-cards-container,
-.programs-wrapper,
-.programs-grid,
-section.programs-section .container,
-section.program-hero-section .container {
+  /* ترتيب عمودي: دبلوم → بكالوريوس → ماجستير */
+.programs-hero-grid {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 30px !important;
+  gap: 20px !important;
   width: 100% !important;
 }
 
-/* 2. ترتيب البطاقات */
-.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس → وسط */
-.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم → أعلى */
-.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير → أسفل */
+.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس ← وسط */
+.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم ← أعلى */
+.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير ← أسفل */
 
-/* 3. الحفاظ على العرض والتنسيق */
 .program-hero-card {
   width: 100% !important;
   max-width: 400px !important;
-  flex: 0 0 auto !important;
 }
 
 </style>
