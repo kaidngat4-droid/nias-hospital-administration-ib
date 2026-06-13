@@ -3078,19 +3078,7 @@ body.dark-mode .exit-btn-cancel {
 body.dark-mode .exit-btn-cancel:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-  /* ═══════════════════════════════════════════════════════════ */
-/*  ترتيب بطاقات البرامج: دبلوم → بكالوريوس → ماجستير        */
-/* ═══════════════════════════════════════════════════════════ */
-
-/* 1. تأكد أن الحاوية الأب تستخدم Flexbox */
-.program-hero-grid,
-.program-cards-container,
-.programs-wrapper {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-}
-/* ترتيب البطاقات: دبلوم → بكالوريوس → ماجستير */
+  /* ترتيب البرامج: دبلوم → بكالوريوس → ماجستير */
 .programs-hero-grid {
   display: flex !important;
   flex-direction: row !important;
@@ -3099,9 +3087,9 @@ body.dark-mode .exit-btn-cancel:hover {
   flex-wrap: wrap;
 }
 
-.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس */
-.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم */
-.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير */
+.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس ← وسط */
+.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم ← بداية */
+.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير ← نهاية */
 </style>
 </head>
 
