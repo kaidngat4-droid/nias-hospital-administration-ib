@@ -3085,11 +3085,15 @@ body.dark-mode .exit-btn-cancel:hover {
 /* 1. الحاوية الأب — عمودية */
 .program-hero-grid,
 .program-cards-container,
-.programs-wrapper {
+.programs-wrapper,
+.programs-grid,
+section.programs-section .container,
+section.program-hero-section .container {
   display: flex !important;
-  flex-direction: column !important;        /* ← مكدسة عمودياً */
-  align-items: center !important;           /* توسيط أفقي */
-  gap: 30px !important;                     /* المسافة بين البطاقات */
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 30px !important;
+  width: 100% !important;
 }
 
 /* 2. ترتيب البطاقات */
@@ -3097,11 +3101,11 @@ body.dark-mode .exit-btn-cancel:hover {
 .program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم → أعلى */
 .program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير → أسفل */
 
-/* 3. الحفاظ على العرض الأصلي */
+/* 3. الحفاظ على العرض والتنسيق */
 .program-hero-card {
-  width: 100%;
-  max-width: 400px;
-  flex: 0 0 auto;
+  width: 100% !important;
+  max-width: 400px !important;
+  flex: 0 0 auto !important;
 }
 
 </style>
