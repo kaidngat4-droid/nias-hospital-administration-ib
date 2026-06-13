@@ -3090,19 +3090,18 @@ body.dark-mode .exit-btn-cancel:hover {
   flex-wrap: wrap !important;
   justify-content: center !important;
 }
-
-/* 2. ترتيب البطاقات باستخدام order */
-.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس → وسط */
-.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم → بداية */
-.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير → نهاية */
-
-/* 3. الحفاظ على التنسيق والأحجام الأصلية — لا تغيير */
-.program-hero-card {
-  /* لا تعديل على العرض أو الحجم أو الهوامش */
-  flex: 1 1 300px;
-  max-width: 400px;
+/* ترتيب البطاقات: دبلوم → بكالوريوس → ماجستير */
+.programs-hero-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
+.program-hero-card:nth-child(1) { order: 2 !important; }  /* بكالوريوس */
+.program-hero-card:nth-child(2) { order: 1 !important; }  /* دبلوم */
+.program-hero-card:nth-child(3) { order: 3 !important; }  /* ماجستير */
 </style>
 </head>
 
